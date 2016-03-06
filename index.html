@@ -1,77 +1,161 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=640">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <script type="text/javascript" src="util.js"></script>
+  <script type="text/javascript" src="actors.js"></script>
+  <script type="text/javascript" src="directors.js"></script>
+  <script type="text/javascript" src="genres.js"></script>
+  <script type="text/javascript" src="themes.js"></script>
+  <script type="text/javascript" src="tropes.js"></script>
+  <script type="text/javascript">  
+    function clearAll() {
+	
+		document.getElementById('director').value = '';
+		document.getElementById('genre').value = '';
+		document.getElementById('actor1').value = '';
+		document.getElementById('actor2').value = '';
+		document.getElementById('actor3').value = '';
+		document.getElementById('actor4').value = '';
+		document.getElementById('genre').value = '';
+		document.getElementById('subgenre').value = '';
+		document.getElementById('trope').value = '';
+		document.getElementById('theme').value = '';
+	}
+	
+	function randomAll() {
+		document.getElementById('director').value = getRandomDirector();
+		document.getElementById('genre').value = getRandomElement(Object.keys(genres));
+		document.getElementById('actor1').value = getRandomActor();
+		document.getElementById('actor2').value = getRandomActor();
+		document.getElementById('actor3').value = getRandomActor();
+		document.getElementById('actor4').value = getRandomActor();
+		document.getElementById('genre').value = getRandomElement(Object.keys(genres));
+		document.getElementById('subgenre').value = getRandomElement(genres[genre.value]);
+		document.getElementById('trope').value = getRandomTrope();
+		document.getElementById('theme').value = getRandomTheme();
+	}
+  </script>
+</head>
 
-    <link rel="stylesheet" href="stylesheets/core.css" media="screen">
-    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
+<body>
 
-    <script type="text/javascript" src="javascripts/modernizr.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $('#main_content').headsmart()
-      })
-    </script>
-    <title>Pitchme by ericdriggs</title>
-  </head>
+	<h1>Pitch Me!</h1>
+	<h2>A movie idea party game</h2>
 
-  <body>
-    <a id="forkme_banner" href="https://github.com/ericdriggs/pitchme">View on GitHub</a>
-    <div class="shell">
+	<fieldset>
+		<legend>How to Play</legend>
+		<textarea disabled="disabled">
+			
+			<ol>
+			  <li>Click on the [? All] button</li>
+			  <li>To change a line, click on the [?] button beside it</li>
+			  <li>To clear a line, click on the [-] button beside it</li>
+			  <li>Create a plot summary, twist and title</li>
+			  <li>Repeat</li>
+			</ol>
+		</textarea>
+	</fieldset>
+	
+	<button onclick="randomAll();">? All</button>
+	<button onclick="clearAll();">- All</button>
 
-      <header>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <h1>Pitchme</h1>
-            <h2>A movie idea party game</h2>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-      </header>
+	
+	<fieldset>
+		<legend>Director</legend>
+		<input type="text" id="director">
+		<button onclick="document.getElementById('director').value = getRandomDirector();">?</button>
+		<button onclick="document.getElementById('director').value = '';">-</button>
+	</fieldset>
 
-      <section id="downloads">
-        <span class="inner">
-          <a href="https://github.com/ericdriggs/pitchme/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/ericdriggs/pitchme/tarball/master" class="tgz"><em>download</em> .TGZ</a>
-        </span>
-      </section>
+	
+	<fieldset>
+		<legend>Cast</legend>
+
+		<input type="text" id="actor1">
+		<button onclick="document.getElementById('actor1').value = getRandomActor();">?</button>
+		<button onclick="document.getElementById('actor1').value = getRandomMaleActor();">M</button>
+		<button onclick="document.getElementById('actor1').value = getRandomFemaleActor();">F</button>
+		<button onclick="document.getElementById('actor1').value = '';">-</button>
+
+		<input type="text" id="actor2">
+		<button onclick="document.getElementById('actor2').value = getRandomActor();">?</button>
+		<button onclick="document.getElementById('actor2').value = getRandomMaleActor();">M</button>
+		<button onclick="document.getElementById('actor2').value = getRandomFemaleActor();">F</button>
+		<button onclick="document.getElementById('actor2').value = '';">-</button>
+
+		<input type="text" id="actor3">
+		<button onclick="document.getElementById('actor3').value = getRandomActor();">?</button>
+		<button onclick="document.getElementById('actor3').value = getRandomMaleActor();">M</button>
+		<button onclick="document.getElementById('actor3').value = getRandomFemaleActor();">F</button>
+		<button onclick="document.getElementById('actor3').value = '';">-</button>
+
+		<input type="text" id="actor4">
+		<button onclick="document.getElementById('actor4').value = getRandomActor();">?</button>
+		<button onclick="document.getElementById('actor4').value = getRandomMaleActor();">M</button>
+		<button onclick="document.getElementById('actor4').value = getRandomFemaleActor();">F</button>
+		<button onclick="document.getElementById('actor4').value = '';">-</button>
+
+	</fieldset>
+
+	<fieldset>
+		<legend>Genre</legend>
+		<input type="text" id="genre">
+		<button onclick="document.getElementById('genre').value = getRandomElement(Object.keys(genres));">?</button>
+		<button onclick="document.getElementById('genre').value = '';">-</button>
+
+		<input type="text" id="subgenre">
+		<button onclick="document.getElementById('subgenre').value = getRandomElement(genres[genre.value]);">?</button>
+		<button onclick="document.getElementById('subgenre').value = '';">-</button>
+	</fieldset>	
 
 
-      <span class="banner-fix"></span>
+	<fieldset>
+		<legend>Trope</legend>
+		<input type="text" id="trope">
+		<button onclick="document.getElementById('trope').value = getRandomTrope();">?</button>
+		<button onclick="document.getElementById('trope').value = '';">-</button>
+	</fieldset>	
+
+	<fieldset>
+		<legend>Theme</legend>
+		<input type="text" id="theme">
+		<button onclick="document.getElementById('theme').value = getRandomTheme();">?</button>
+		<button onclick="document.getElementById('theme').value = '';">-</button>
+	</fieldset>
+	
+	<fieldset>
+		<legend>Plot Summary</legend>
+		<textarea id="plotSummary" rows=1 cols=80></textarea>
+	</fieldset>
+
+	<fieldset>
+		<legend>Twist</legend>
+		<textarea id="twist" rows=1  cols=80></textarea>
+	</fieldset>
+
+	<fieldset>
+		<legend>Title</legend>
+		<textarea id="title" rows=1  cols=80></textarea>
+	</fieldset>
+	
+  <!--TODO: add radio buttons for generating the plot and the twist, with 2-3 options for each to determine what to generate -->
+  
+  </div><!-- end main -->
+</body>
 
 
-      <section id="main_content">
-        <h3>
-<a id="how-to-play" class="anchor" href="#how-to-play" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to play</h3>
 
-<ol>
-<li>Click on the [? All] button</li>
-<li>To change a line, click on the [?] button beside it</li>
-<li>To clear a line, click on the [-] button beside it</li>
-<li>Create a plot summary, twist and title</li>
-<li>Repeat</li>
-</ol>
-      </section>
 
-      <footer>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <p>this project by <a href="https://github.com/ericdriggs">ericdriggs</a> can be found on <a href="https://github.com/ericdriggs/pitchme">GitHub</a></p>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-        <p>Generated with <a href="https://pages.github.com">GitHub Pages</a> using Merlot</p>
-        <span class="octocat"></span>
-      </footer>
 
-    </div>
 
-    
-  </body>
+
+
+
+
+
+
+
+
+
 </html>
